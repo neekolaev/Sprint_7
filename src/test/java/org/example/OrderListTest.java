@@ -4,8 +4,7 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class OrderListTest {
 
@@ -35,7 +34,7 @@ public class OrderListTest {
     @Step("Ensure the response contains a non-empty list of orders")
     private void validateOrdersInResponse(Response response) {
         int orderCount = response.jsonPath().getList("orders").size();
-        assertFalse("The order list should not be empty", orderCount == 0);
+        assertNotEquals("The order list should not be empty", 0, orderCount);
     }
 
 }

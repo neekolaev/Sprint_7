@@ -9,6 +9,7 @@ import org.junit.Test;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class CourierLoginTest {
 
@@ -71,10 +72,8 @@ public class CourierLoginTest {
 
         if (expectedStatus == 200) {
             // Извлекаем ID только если логин успешен
-            Integer id = response.jsonPath().getInt("id");
-            if (id != null) {
-                courierId = id;
-            }
+            courierId = response.jsonPath().getInt("id");
+            assertTrue("ID должно быть положительным", courierId > 0);
         }
     }
 
